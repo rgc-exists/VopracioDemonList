@@ -1,0 +1,18 @@
+{
+    "id": 121748629,
+    "name": "Vindication Furnace Challenge",
+    "author": "Verminity",
+    "creators": [],
+    "verifier": "Shmee",
+    "verification": "https://youtu.be/_GkZkE3FnOk?si=8AlUj1UE5p59APBQ",
+    "percentToQualify": 100,
+    "password": "",
+    "records": [
+        {
+            "user": "Verminity",
+            "link": "https://youtu.be/mVNjCocFFSk",
+            "percent": 100,
+            "hz": 240
+        }
+    ]
+}
