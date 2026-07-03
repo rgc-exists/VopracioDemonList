@@ -1,53 +1,83 @@
 import { round, score } from './score.js';
 
 /**
- * Path to directory containing `_list.json` and all levels
+ * Resolve data files relative to this module so the site works from GitHub
+ * Pages project URLs like /VopracioDemonList/.
  */
-const dir = 'data';
+function dataUrl(fileName) {
+    return new URL(`../data/${fileName}`, import.meta.url);
+}
+
+async function fetchJson(...fileNames) {
+    const errors = [];
+
+    for (const fileName of fileNames) {
+        try {
+            const response = await fetch(dataUrl(fileName));
+            if (!response.ok) {
+                throw new Error(`${fileName} returned HTTP ${response.status}`);
+            }
+
+            return await response.json();
+        } catch (error) {
+            errors.push(error.message);
+        }
+    }
+
+    throw new Error(errors.join("; "));
+}
 
 export async function fetchList() {
-    const listResult = await fetch(`${dir}/_list.json`);
     try {
-        const list = await listResult.json();
+        const list = await fetchJson('list.json', '_list.json');
+        if (!Array.isArray(list)) {
+            throw new Error('list.json must be an array.');
+        }
+
         return await Promise.all(
             list.map(async (path, rank) => {
-                const levelResult = await fetch(`${dir}/${path}.json`);
                 try {
-                    const level = await levelResult.json();
+                    const level = await fetchJson(`${path}.json`);
                     return [
                         {
                             ...level,
                             path,
-                            records: level.records.sort(
-                                (a, b) => b.percent - a.percent,
-                            ),
+                            records: Array.isArray(level.records)
+                                ? level.records.sort((a, b) => b.percent - a.percent)
+                                : [],
                         },
                         null,
                     ];
-                } catch {
-                    console.error(`Failed to load level #${rank + 1} ${path}.`);
+                } catch (error) {
+                    console.error(
+                        `Failed to load level #${rank + 1} ${path}.`,
+                        error,
+                    );
                     return [null, path];
                 }
             }),
         );
-    } catch {
-        console.error(`Failed to load list.`);
+    } catch (error) {
+        console.error('Failed to load list.', error);
         return null;
     }
 }
 
 export async function fetchEditors() {
     try {
-        const editorsResults = await fetch(`${dir}/_editors.json`);
-        const editors = await editorsResults.json();
-        return editors;
-    } catch {
+        return await fetchJson('editors.json', '_editors.json');
+    } catch (error) {
+        console.error('Failed to load list editors.', error);
         return null;
     }
 }
 
 export async function fetchLeaderboard() {
     const list = await fetchList();
+
+    if (!list) {
+        return [[], ['Failed to load list data.']];
+    }
 
     const scoreMap = {};
     const errs = [];
