@@ -1,8 +1,11 @@
 {
     "id": 130131214,
     "name": "Hardest wave challll",
-    "author": "GDroboaayush",
-    "creators": [],
+    "author": "Robo",
+    "creators": [
+        "LaF",
+        "Robo"
+    ],
     "verifier": "Robo",
     "verification": "https://youtu.be/nZB3LshMsuI?si=1dCls0WS_8hSSFVr",
     "percentToQualify": 100,
