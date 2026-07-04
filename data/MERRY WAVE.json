@@ -7,5 +7,12 @@
     "verification": "https://youtu.be/T_uhPf2ZGgI?si=Dl8Ms-cwXGmBE1zR",
     "percentToQualify": 100,
     "password": "",
-    "records": []
+    "records": [
+        {
+            "user": "SoccerBroChess",
+            "link": "https://youtu.be/O3-zsSIoP5I",
+            "percent": 100,
+            "hz": 240
+        }
+    ]
 }
