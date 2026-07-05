@@ -7,5 +7,12 @@
     "verification": "https://www.youtube.com/watch?v=LPiiECCGbV8",
     "percentToQualify": 100,
     "password": "",
-    "records": []
+    "records": [
+        {
+            "user": "Paladin",
+            "link": "https://youtu.be/eb7I4WS1lxU?si=Y5RnUDFkIH2JuySS",
+            "percent": 100,
+            "hz": 240
+        }
+    ]
 }
