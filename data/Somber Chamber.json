@@ -1,0 +1,18 @@
+{
+    "id": "",
+    "name": "Somber Chamber",
+    "author": "Taublix",
+    "creators": [],
+    "verifier": "Taublix",
+    "verification": "https://youtu.be/kknrIgm3NZc?si=SzRsH0Yqc9x9djLH",
+    "percentToQualify": 100,
+    "password": "",
+    "records": [
+        {
+            "user": "SoccerBroChess",
+            "link": "https://youtu.be/hdWRSYZuLcQ",
+            "percent": 100,
+            "hz": 240
+        }
+    ]
+}
